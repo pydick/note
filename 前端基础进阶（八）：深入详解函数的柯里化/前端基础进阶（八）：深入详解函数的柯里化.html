@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+<script>
+    /*
+    *
+    * 深奥诡涩，看不懂。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+    * 。。。。。。。。。。。。。。。
+    * 。。。。。。。。。。。。。。。。。
+    * 。。。。。。。。。。。
+    * 。。。。。。。。
+    * 。。。。。。。
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
+
+
+
+
+
+    /*
+    * 函数的隐式转换
+    * */
+/*    function fn1() {
+        return 20;
+    }
+
+    console.log(fn1 + 10);
+    function fn2() {
+        return 20;
+    }
+
+    fn2.toString = function() {
+        return 10;
+    }
+
+    console.log(fn2 + 10);
+    function fn3() {
+        return 20;
+    }
+
+    fn3.toString = function() {
+        return 10;
+    }
+
+    fn3.valueOf = function() {
+        return 5;
+    }
+
+    console.log(fn3 + 10); */
+    /*
+    * map方法
+    * map有两个参数，第一个参数是回调函数，里面分三个参数（item，i,arr）,回调函数里this指向map第二个参数对象
+    * */
+    var newArr = [1, 2, 3, 4].map(function(item, i, arr) {
+        /*console.log(item, i, arr, this);  // 可运行试试看*/
+        return item+1;  // 每一项加1
+    }, { a: 2});
+    console.log(newArr); // [2, 3, 4, 5]
+    /*
+    * map的实现原理
+    *
+    * */
+/*    Array.prototype._map = function(fn, context) {
+        var temp = [];
+        if(typeof fn == 'function') {
+            var k = 0;
+            var len = this.length;
+            // 封装for循环过程
+            for(; k < len; k++) {
+                // 将每一项的运算操作丢进fn里，利用call方法指定fn的this指向与具体参数
+                temp.push(fn.call(context, this[k], k, this))
+            }
+        } else {
+            console.error('TypeError: '+ fn +' is not a function.');
+        }
+
+        // 返回每一项运算结果组成的新数组
+        return temp;
+    }
+
+    var newArr = [1, 2, 3, 4]._map(function(item) {
+        return item + 1;
+    })
+    // [2, 3, 4, 5]*/
+
+    /*
+    *  add(1)(2)(3)(4)(5)方法的实现
+    *
+    * */
+/*    function add() {
+        // 第一次执行时，定义一个数组专门用来存储所有的参数
+        var _args = [].slice.call(arguments);
+
+        // 在内部声明一个函数，利用闭包的特性保存_args并收集所有的参数值
+        var adder = function () {
+            var _adder = function() {
+                [].push.apply(_args, [].slice.call(arguments));
+                return _adder;
+            };
+
+            // 利用隐式转换的特性，当最后执行时隐式转换，并计算最终的值返回
+            _adder.toString = function () {
+                return _args.reduce(function (a, b) {
+                    return a + b;
+                });
+            }
+
+            return _adder;
+        }
+        return adder.apply(null, [].slice.call(arguments));
+    }
+
+    // 输出结果，可自由组合的参数
+    console.log(add(1, 2, 3, 4, 5));  // 15
+    console.log(add(1, 2, 3, 4)(5));  // 15
+    console.log(add(1)(2)(3)(4)(5));  // 15*/
+
+</script>
+</html>

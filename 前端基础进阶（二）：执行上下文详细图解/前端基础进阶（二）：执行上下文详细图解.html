@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * 变量提升
+    * */
+  /*  console.log(a);   // 这里会打印出什么？
+    var a = 20;*/
+    /*
+    * 执行上下文的顺序，从正在调用的上下文到全局上下文的执行顺序
+    * */
+   /* var color = 'blue';
+    function changeColor() {
+        var anotherColor = 'red';
+        function swapColors() {
+            var tempColor = anotherColor;
+            anotherColor = color;
+            color = tempColor;
+        }
+        swapColors();
+    }
+    changeColor();*/
+    /*
+    * 闭包的原始
+    * */
+    function f1(){
+        var n=999;
+        function f2(){
+            alert(n);
+        }
+        return f2;
+    }
+    var result=f1();
+    result(); // 999
+</script>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>弹性布局，子容器的定位</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 10px;
+            background-color: #58a;
+        }
+        .item {
+            width: 50px;
+            height: 50px;
+            margin: 2px;
+            background-color: #fb3;
+            flex-shrink: 0;
+            flex-basis: auto;
+        }
+        .box1{
+            width: 200px;
+            height: 200px;
+            margin-bottom: 10px;
+            background-color: #58a;
+            display: flex;
+            flex-direction: row;
+            /*flex-direction: row-reverse;
+            flex-direction: column;
+            flex-direction: column-reverse;*/
+        }
+        .box2{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            /*flex-wrap: wrap;*/
+           /* flex-wrap: wrap-reverse;*/
+        }
+        .box3{//方向与换行的结合
+            display: flex;
+            flex-flow: row nowrap;
+            flex-flow: row wrap;
+            flex-flow: row wrap-reverse;
+            flex-flow: row-reverse nowrap;
+            flex-flow: row-reverse wrap;
+            flex-flow: row-reverse wrap-reverse;
+            flex-flow: column nowrap;
+            flex-flow: column wrap;
+            flex-flow: column wrap-reverse;
+            flex-flow: column-reverse nowrap;
+            flex-flow: column-reverse wrap;
+            flex-flow: column-reverse wrap-reverse;
+        }
+        .box4{
+            display: flex;
+            flex-direction: row;
+            justify-content:flex-start;
+            justify-content: flex-end;
+            justify-content:center;
+            justify-content:space-between;
+            justify-content:space-around;
+        }
+        .box5{
+            display: flex;
+            flex-flow: column wrap;
+            align-items:stretch;
+            align-items: flex-start;
+            align-items: flex-end;
+            align-items: center;
+            align-items: baseline;
+        }
+        .box7{//当父容器由子元素自动填充的时候，不存在间隙排列
+            float: left;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            background-color: #58a;
+        }
+        .content{
+            width: 100px;
+            height: 100px;
+            background-color: #fb3;
+            flex-shrink: 0;
+            flex-basis: auto;
+        }
+        .box8{
+            width: 200px;
+            height: 200px;
+            background-color: #58a;
+            display: flex;
+            flex-flow: row wrap;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .item8{
+            width: 50px;
+            height: 50px;
+            background-color:#fb3;
+            margin: 2px;
+        }
+        .box9{
+            width: 200px;
+            height: 200px;
+            margin-top: 20px;
+            display: flex;
+            background-color:#58a;
+            flex-flow: column wrap;
+            align-items: center;
+        }
+        .item9{
+            width: 50px;
+            height: 50px;
+            margin: 2px;
+            background-color:#fb3;
+        }
+        .box11{
+            width: 200px;
+            height: 200px;
+            background-color: #58a;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+        .box11child{
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .item11{
+            width: 50px;
+            height: 50px;
+            background-color: #fb3;
+            margin: 2px;
+        }
+        .box12{
+            width: 200px;
+            height: 200px;
+            background-color: #58b;
+            margin-top: 20px;
+            display: flex;
+            flex-flow: column wrap;
+            /*align-items: center;
+            align-content: center;*/
+            /*align-items: flex-start;
+            align-content: flex-start;*/
+           /* align-items: baseline;
+            align-content: baseline;*/
+            /*align-content: space-between;*/
+            /*align-content: space-around;*/
+
+        }
+        .item12{
+            width: 50px;
+            height: 50px;
+            margin: 2px;
+            background-color: #fb3;
+            flex-shrink: 0;
+            flex-basis: auto;
+        }
+        .box13{
+            width: 200px;
+            height: 200px;
+            background-color: #58b;
+            margin-top: 20px;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .item13{
+            width: 50px;
+            height: 50px;
+            margin: 2px;
+            background-color: #fb3;
+            flex-shrink: 0;
+            flex-basis: auto;
+        }
+    </style>
+</head>
+<body>
+    <!--flex方向排列-->
+    <div class="box box1">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+    </div>
+    <!--flex深入 弹性布局针对的父子容器的定位，所以可以嵌套弹性布局，以此构建大型项目-->
+    <div class="box11">
+        <div class="box11child">
+            <div class="item11">1</div>
+            <div class="item11">2</div>
+            <div class="item11">3</div>
+        </div>
+        <div class="box11child">
+            <div class="item11">1</div>
+            <div class="item11">2</div>
+            <div class="item11">3</div>
+        </div>
+    </div>
+    <!--flex换行排列-->
+    <div class="box box2">
+        <div class="item item2">1</div>
+        <div class="item item2">2</div>
+        <div class="item item2">3</div>
+        <div class="item item2">4</div>
+    </div>
+    <!--flex方向与换行结合排列，flex-flow-->
+    <div class="box box3">
+        <div class="item item2">1</div>
+        <div class="item item2">2</div>
+        <div class="item item2">3</div>
+        <div class="item item2">4</div>
+    </div>
+    <!--flex横向对齐方式-->
+    <div class="box box4">
+        <div class="item item2">1</div>
+        <div class="item item2">2</div>
+        <div class="item item2">3</div>
+    </div>
+    <!--flex纵向垂直对齐方式-->
+    <div class="box box5">
+        <div class="item item2">1</div>
+        <div class="item item2">2</div>
+        <div class="item item2">3</div>
+    </div>
+    <!--fles深入，当父容器没有宽度自动被子元素填充，没有间隙，不存在横向纵向对其排列-->
+    <div class="box7">
+        <div class="content"></div>
+        <div class="content"></div>
+    </div>
+    <!--flex深入，横向对齐方式结合换行-->
+    <div class="box8">
+        <div class="item8">1</div>
+        <div class="item8">2</div>
+        <div class="item8">3</div>
+        <div class="item8">3</div>
+    </div>
+    <!--flex深入，纵向对齐方式结合换行-->
+    <div class="box9">
+        <div class="item9">1</div>
+        <div class="item9">2</div>
+        <div class="item9">3</div>
+        <div class="item9">4</div>
+    </div>
+    <div class="box12">
+        <div class="item12">1</div>
+        <div class="item12">2</div>
+        <div class="item12">3</div>
+        <div class="item12">4</div>
+    </div>
+    <div class="box13">
+        <div class="item13" style="order:2">1</div>
+        <div class="item13"  style="order:4">2</div>
+        <div class="item13"  style="order:1">3</div>
+        <div class="item13"  style="order:-1">4</div>
+    </div>
+    <div class="box14">
+        <div class="item14" style="flex-grow: 3;">1</div>
+        <div class="item14"  style="flex-grow: 2;">2</div>
+        <div class="item14"  style="flex-grow: 1;">3</div>
+    </div>
+    <style>
+        .box14{
+            width: 200px;
+            height: 200px;
+            background-color: #58a;
+            margin-top: 20px;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .item14{
+           /* width: 50px;*/
+            height: 50px;
+            background-color: #fb4;
+            margin: 2px;
+            flex-shrink: 0;
+            flex-basis: auto;
+
+        }
+    </style>
+    <div class="box15">
+        <div class="item15" style="flex-shrink: 5;">1</div>
+        <div class="item15"  style="flex-shrink: 4;">2</div>
+        <div class="item15"  style="flex-shrink: 3;">3</div>
+        <div class="item15"  style="flex-shrink: 2;">4</div>
+        <div class="item15"  style="flex-shrink: 1;">5</div>
+    </div>
+    <style>
+        .box15{
+            width: 200px;
+            height: 200px;
+            background-color: #58b;
+            margin-top: 20px;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .item15{
+            width: 50px;
+            height: 50px;
+            background-color: #fb4;
+            margin: 0 1px;
+            /*flex-shrink: 1;*/
+        }
+    </style>
+    <div class="box16">
+        <div class="item16">1sdas</div>
+        <div class="item16">2</div>
+        <div class="item16">3</div>
+        <div class="item16">4</div>
+        <div class="item16">5</div>
+    </div>
+    <style>
+        .box16{
+            width: 200px;
+            height: 200px;
+            background-color: #58b;
+            margin-top: 20px;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .item16 {
+            flex-basis: 20px;
+            height: 50px;
+            background-color: #fb4;
+            margin: 2px;
+        }
+    </style>
+    <div class="box17">
+        <div class="item17" style="align-self: center;">1</div>
+        <div class="item17">2</div>
+        <div class="item17">3</div>
+        <div class="item17">4</div>
+    </div>
+    <style>
+        .box17{
+            width: 200px;
+            height: 200px;
+            background-color: #58b;
+            margin-top: 20px;
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .item17{
+            width: 50px;
+            height: 50px;
+            background-color: #fb4;
+            margin: 2px;
+        }
+    </style>
+    <div class="box18">
+        <div class="item18">1</div>
+        <div class="item18">2</div>
+        <div class="item18">3</div>
+        <div class="item18">4</div>
+    </div>
+    <style>
+        .box18{
+            width: 200px;
+            height: 200px;
+            background-color: #58b;
+            margin-top: 20px;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+        }
+        .item18{/*膨胀指的是子项可定宽度，不仅仅是可由内容撑开宽度，收缩指的是子项适应盒子宽度，自动收缩*/
+            width: 50px;
+            height: 50px;
+            background-color: #fb4;
+           /* flex-shrink: 0;*/
+            flex:1 1;
+          /*  flex: 0 0 auto;*/
+         }
+    </style>
+    <div class="box19">
+        <div class="item19" style="margin: 0 auto;">1</div>
+        <div class="item19">2</div>
+        <div class="item19">3</div>
+        <div class="item19">4</div>
+    </div>
+    <style>
+        .box19{
+            width: 200px;
+            height: 200px;
+            background-color: #58b;
+            display: flex;
+            margin-top: 20px;
+            flex-flow: row nowrap;
+        }
+        .item19{
+            width: 50px;
+            height: 50px;
+            background-color: #fb4;
+        }
+    </style>
+</body>
+</html>

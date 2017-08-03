@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>CSS Grid</title>
+    <!-- 自定义css -->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*
+            父元素
+        */
+        .contentInfo {
+            border:1px solid red;
+            display: -webkit-grid;/*grid布局*/
+            display: grid;
+            /*grid-template-columns: 100px 1fr;*/
+            /*
+                分列：2列
+            */
+            grid-template-columns: 1fr 1fr;
+            /*
+                列间隔
+            */
+            grid-column-gap: 10px;
+            /*
+                行间隔
+            */
+            grid-row-gap: 10px;
+
+            /*
+                行列间隔
+                grid-gap: 10px;
+            */
+        }
+        /*
+            所有子元素
+        */
+        .contentInfo * {
+            background-color: #7AB8ED;
+            padding: 20px;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        /*
+            2行3列
+        */
+        .contentInfo2 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        /*
+            每行开始列占四分之二
+        */
+        .contentInfo3 {
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+
+        /*
+            响应式网格，默认一行两列
+        */
+        .contentInfo4,
+        .contentInfo5 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /*
+            超过500屏一行3列
+        */
+        @media screen and (min-width: 500px) {
+            .contentInfo4 {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        /*
+            超过800屏一行四列
+        */
+        @media screen and (min-width: 800px) {
+            .contentInfo4 {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        /*
+            设置行属性
+        */
+        .contentInfo5 {
+            grid-template-rows: 2fr 1fr;
+        }
+    </style>
+</head>
+<body>
+
+<!-- 一行两列效果 -->
+<h3>一行两列等宽</h3>
+<div class="contentInfo">
+    <div>1</div>
+    <div>2</div>
+</div>
+<br/>
+<h3>两行两列等宽</h3>
+<!-- 两行两列效果 -->
+<div class="contentInfo">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+
+<br/>
+<!--2行三列效果 -->
+<h3>两行三列等宽</h3>
+<div class="contentInfo contentInfo2">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+<br/>
+<!--三行三列效果，每行开始列占4分之二 -->
+<h3>三行三列效果，每行开始列占4分之二</h3>
+<div class="contentInfo  contentInfo3">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+</div>
+
+<br/>
+<!-- 响应式网格 -->
+<h3>响应式网格</h3>
+<div class="contentInfo  contentInfo4">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+</div>
+
+<!-- 响应式网格 -->
+<h3>设置行属性</h3>
+<div class="contentInfo  contentInfo5">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+</body>
+</html>

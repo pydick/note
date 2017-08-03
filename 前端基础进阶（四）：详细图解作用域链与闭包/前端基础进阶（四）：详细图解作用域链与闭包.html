@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    //作用域链具体展示
+   /* var a = 20;//变量对象在执行上下文创建的过程，单变量后取消以前变量为准 ，函数变量名覆盖
+    function test() {
+        var b = a + 10;
+        function innerTest() {
+            var c = 10;
+            return b + c;
+        }
+        return innerTest();
+    }
+    var b=test();
+    innerTestEC = {
+    VO: {...},  // 变量对象
+    scopeChain: [VO(innerTest), VO(test), VO(global)], // 作用域链
+    this: {}
+    }
+   */
+    /*
+    * 闭包的使用
+    * */
+   /* var fn = null;
+    function foo() {
+        var a = 2;
+        function innnerFoo() {
+            console.log(a);
+        }
+        fn = innnerFoo; // 将 innnerFoo的引用，赋值给全局变量中的fn
+    }
+
+    function bar() {
+        fn(); // 此处的保留的innerFoo的引用
+    }
+
+    foo();
+    bar(); // 2*/
+    /*
+    * 闭包，函数调用栈和作用域链不是很清楚
+    * */
+    /*var fn = null;
+    function foo() {
+        var a = 2;
+        function innnerFoo() {
+            console.log(c); // 在这里，试图访问函数bar中的c变量，会抛出错误
+            console.log(a);
+        }
+        fn = innnerFoo; // 将 innnerFoo的引用，赋值给全局变量中的fn
+    }
+
+    function bar() {
+        var c = 100;
+        fn(); // 此处的保留的innerFoo的引用
+    }
+
+    foo();
+    bar();*/
+    /*
+    * 闭包的应用场景setimeout
+    * 执行上面的代码，变量timer的值，会立即输出出来，
+    * 表示setTimeout这个函数本身已经执行完毕了。但是一秒钟之后，fn才会被执行。这是为什么？
+     按道理来说，既然fn被作为参数传入了setTimeout中，
+     那么fn将会被保存在setTimeout变量对象中，setTimeout执行完毕之后，
+     它的变量对象也就不存在了。可是事实上并不是这样。至少在这一秒钟的事件里，它仍然是存在的。这正是因为闭包。
+    * */
+   /* function fn() {
+        console.log('this is test.')
+    }
+    var timer =  setTimeout(fn, 1000);
+    console.log(timer);//输出是1？为什么*/
+
+    /*
+    *模块化设计
+    * 在面向对象的开发中，我们常常需要考虑是将变量作为私有变量，还是放在构造函数中的this中
+    * */
+   /* (function () {
+        var a = 10;
+        var b = 20;
+        function add(num1, num2) {
+            var num1 = !!num1 ? num1 : a;
+            var num2 = !!num2 ? num2 : b;
+
+            return num1 + num2;
+        }
+        window.add = add;
+    })();
+    add(10, 20);*/
+    /*
+    * 闭包的应用形式和场景
+    * */
+
+   /* for (var i=1; i<=5; i++) {
+        (function (i) {
+            setTimeout( function timer() {
+                console.log(i);
+            }, i*1000 );
+        })(i)
+    }
+    for (var i=1; i<=5; i++) {
+     var a=function(i){
+           setTimeout( function timer() {
+               console.log(i);
+           }, i*1000 );
+       }
+     a(i);
+    }
+    for (var i=1; i<=5; i++) {
+        setTimeout( (function(i){
+            return function(){
+                console.log(i);
+            }
+        })(i), i*200 );
+    }*/
+</script>
+</html>

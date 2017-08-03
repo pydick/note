@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    * 闭包的断点解析
+    * */
+    /* var fn = null;
+     function foo() {
+     var a = 2;
+     function innnerFoo() {
+     console.log(a);
+     }
+     fn = innnerFoo; // 将 innnerFoo的引用，赋值给全局变量中的fn
+     }
+
+     function bar() {
+     fn(); // 此处的保留的innerFoo的引用
+     }
+
+     foo();
+     bar(); // 2
+
+     // demo02
+     var fn;
+     var m = 20;
+     function foo() {
+         var a = 2;
+         function baz(a) {
+             console.log(a);
+         }
+         fn = baz;
+     }
+     function bar() {
+         fn(m);
+     }
+
+     foo();
+     bar(); // 20
+
+    // demo03
+
+    function foo() {
+        var a = 2;
+
+        return function bar() {
+            var b = 9;
+
+            return function fn() {
+                console.log(a);
+            }
+        }
+    }
+
+    var bar = foo();
+    var fn = bar();
+    fn();
+
+    // demo04
+
+    function foo() {
+        var a = 2;
+
+        return function bar() {
+            var b = 9;
+
+            return function fn() {
+                console.log(a, b);
+            }
+        }
+    }
+
+    var bar = foo();
+    var fn = bar();
+    fn();*/
+
+    /*
+    * 模块化的闭包
+    * */
+   /* // demo05
+    (function() {
+
+        var a = 10;
+        var b = 20;
+
+        var test = {
+            m: 20,
+            add: function(x) {
+                return a + x;
+            },
+            sum: function() {
+                return a + b + this.m;
+            },
+            mark: function(k, j) {
+                return k + j;
+            }
+        }
+
+        window.test = test;
+
+    })();
+
+    test.add(100);
+    test.sum();
+    test.mark();
+
+    var _mark = test.mark;
+    _mark();*/
+    /*
+    * call闭包断点解析
+    * */
+   /* // demo06
+    var a = 10;
+    var obj = {
+        a: 20
+    }
+    function fn () {
+        console.log(this.a);
+    }
+    fn.call(obj); // 20*/
+</script>
+</html>

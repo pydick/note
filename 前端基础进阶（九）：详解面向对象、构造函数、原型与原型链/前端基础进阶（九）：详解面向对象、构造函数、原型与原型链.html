@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*
+    *  对象的定义，无序属性的集合
+    * */
+/*
+    var person = {
+        name: 'Tom',
+        age: 18,
+        getName: function() {},
+        parent: {}
+    }*/
+    /*
+    * 创建对象
+    * */
+/*    var obj = new Object();
+    var obj = {};*/
+    /*
+    * 我们创建的简单对象添加内容
+    * */
+/*    // 可以这样
+    var person = {};
+    person.name = "TOM";
+    person.getName = function() {
+        return this.name;
+    }
+
+    // 也可以这样
+    var person = {
+        name: "TOM",
+        getName: function() {
+            return this.name;
+        }
+    }*/
+    /*
+    * 访问对象的属性和方法
+    * */
+/*    var person = {
+        name: 'TOM',
+        age: '20',
+        getName: function() {
+            return this.name
+        }
+    }
+    //访问
+    person.name
+    // 或者
+    person['name']*/
+    /*
+    * 访问的属性名是一个变量时
+    * foreach遍历每一项
+    * */
+/*    var person = {
+        name: 'TOM',
+        age: '20',
+        getName: function() {
+            return this.name
+        }
+    };
+    console.log(['name','age']);
+    ['name','age','getName'].forEach(function(item) {
+        console.log(person[item]);
+    })
+    ['a','b','c','d'].forEach(function (item,index) {
+        console.log(item);
+    })*/
+    /*
+    * 工厂模式,我们提供一个模子，然后通过这个模子复制出我们需要的对象，但是不知道属于那个类
+    * */
+/*    var createPerson = function(name, age) {
+
+        // 声明一个中间对象，该对象就是工厂模式的模子
+        var o = new Object();
+
+        // 依次添加我们需要的属性与方法
+        o.name = name;
+        o.age = age;
+        o.getName = function() {
+            return this.name;
+        }
+
+        return o;
+    }
+
+    // 创建两个实例
+    var perTom = createPerson('TOM', 20);
+    var PerJake = createPerson('Jake', 22);
+    console.log(perTom instanceof Object);  // true
+    console.log(PerJake instanceof Function); // true*/
+
+
+/*    // 先一本正经的创建一个构造函数，其实该函数与普通函数并无区别
+    var Person = function(name, age) {
+        this.name = name;
+        this.age = age;
+        this.getName = function() {
+            return this.name;
+        }
+    }
+
+    // 将构造函数以参数形式传入
+    function New(func) {
+
+        // 声明一个中间对象，该对象为最终返回的实例
+        var res = {};
+        if (func.prototype !== null) {
+
+            // 将实例的原型指向构造函数的原型
+            res.__proto__ = func.prototype;
+        }
+
+        // ret为构造函数执行的结果，这里通过apply，将构造函数内部的this指向修改为指向res，即为实例对象
+        var ret = func.apply(res, Array.prototype.slice.call(arguments, 1));
+
+        // 当我们在构造函数中明确指定了返回对象时，那么new的执行结果就是该返回对象
+        if ((typeof ret === "object" || typeof ret === "function") && ret !== null) {
+            return ret;
+        }
+
+        // 如果没有明确指定返回对象，则默认返回res，这个res就是实例对象
+        return res;
+    }
+
+    // 通过new声明创建实例，这里的p1，实际接收的正是new中返回的res
+    var p1 = New(Person, 'tom', 20);
+    console.log(p1.getName());
+
+    // 当然，这里也可以判断出实例的类型了
+    console.log(p1 instanceof Person); // true*/
+    /*
+    * 构造函数模式
+    * */
+
+/*    var Person = function(name, age) {
+        this.name = name;
+        this.age = age;
+        this.getName = function() {
+            return this.name;
+        }
+    }
+
+    var p1 = new Person('Ness', 20);
+    console.log(p1.getName());  // Ness
+    console.log(p1 instanceof Person); // true*/
+    /*
+    * 原型，挂载
+    * */
+/*    // 声明构造函数
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // 通过prototye属性，将方法挂载到原型对象上
+    Person.prototype.getName = function() {
+        return this.name;
+    }
+
+    var p1 = new Person('tim', 10);
+    var p2 = new Person('jak', 22);
+    console.log(p1.getName === p2.getName); // true*/
+    /*
+    * 原型挂载的方法属性是共有属性方法，而实例化指指向构造的属性方法是私有方法
+    * */
+
+/*    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.getName = function() {
+            console.log('this is constructor.');
+        }
+    }
+
+    Person.prototype.getName = function() {
+        return this.name;
+    }
+
+    var p1 = new Person('tim', 10);
+
+    p1.getName(); // this is constructor.*/
+    /*
+    *
+    * */
+/*    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.getName = function() {
+        return this.name;
+    }
+
+    var p1 = new Person('tim', 10);
+
+    console.log('name' in p1); // true*/
+    /*
+    * 创建 Person.prototype新对象，不是原来的原型对象，该对象 Person.prototype指向person；
+    *
+    * */
+/*    function Person() {}
+
+    Person.prototype = {
+        constructor: Person,
+        getName: function() {},
+        getAge: function() {},
+        sayHello: function() {}
+    }*/
+    /*
+    * 继承*/
+/*    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    Person.prototype.getName = function() {
+        return this.name;
+    }
+    // 构造函数的继承
+    function cPerson(name, age, job) {
+        Person.call(this, name, age);
+        this.job = job;
+    }
+    // 继承原型
+    cPerson.prototype = new Person(name, age);
+
+    // 添加更多方法
+    cPerson.prototype.getLive = function() {}*/
+</script>
+</html>
